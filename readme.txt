@@ -8,8 +8,6 @@ mongodb+srv://testuser:<password>@cluster0-xyz.mongodb.net/test?retryWrites=true
 pip3 install -r requirements.txt
 
 # Install requirements manually
-pip3 install pymongo
-pip3 install dnspython
 pip3 install mongoengine
 
 # MongoEngine
