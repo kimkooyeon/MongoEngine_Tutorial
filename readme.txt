@@ -9,6 +9,7 @@ pip3 install -r requirements.txt
 
 # Install requirements manually
 pip3 install mongoengine
+pip3 install dnspython
 
 # MongoEngine
 http://docs.mongoengine.org/guide/defining-documents.html#fields
