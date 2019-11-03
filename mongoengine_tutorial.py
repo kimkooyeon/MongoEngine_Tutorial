@@ -4,9 +4,8 @@ import os
 import json
 from settingSecret import MyMongoDBServerTest01
 
-# result = connect('test', host='test', port=123)
+# CONNECT TO MONGODB
 result = connect(host=MyMongoDBServerTest01.hostURI)
-print(result)
 
 
 # DEFINING DOCUMENT
@@ -19,6 +18,7 @@ class User(Document):
     email_activated = BooleanField(default=False)
     date_created = DateTimeField(default=datetime.utcnow)
     categories = ListField()
+    admin = BooleanField(default=False)
     date_demo = DateField(default=datetime.today)
 
     def json(self):
@@ -51,10 +51,50 @@ class Booking(DynamicDocument):
 
 
 # CREATE A USER
-kim = User(username="kim", password='password', email='kimm123@test.com')
-kim.save()
+# kim = User(username="kim", password='password', email='3kimm123@test.com')
+# kim.save()
 
 # CREATE A BOOKING
-booking = Booking(description='Water drops', author=kim, address='Singapore', appointment=datetime.utcnow(),
-                  parts_required=['Remote control replacement', 'Battery', 'Cleaning'])
-booking.save()
+# booking = Booking(description='Water drops', author=kim, address='Singapore', appointment=datetime.utcnow(),
+#                   parts_required=['Remote control replacement', 'Battery', 'Cleaning'])
+# booking.save()
+
+# SAVE A USER
+# user1 = User('gibberish nonsense here', 'kim', 'password', '1testadmin@admin.com')
+# user1.admin = True
+# user1.email_activated = True
+# user1.nothing = False
+# user1.save()
+
+# SAVE A BOOKING WITH NEW FIELD e.g. nothing or price
+# booking1 = Booking(description='Some gibberish', address='Singapore', appointment=datetime.utcnow())
+# booking1.nothing = 'Nothing here'
+# booking1.price = 1.55123123143412414
+# booking1.save()
+
+# QUERY DATABASE
+users = User.objects()
+for user in users:
+    print(user.username, user.email)
+
+# QUERY FILTER
+# admins = User.objects(admin=True, email_activated=True)
+# for a in admins:
+#     print(a.username, a.email)
+
+# QUERY ONLY 1 OBJECT
+# try:
+#     user2 = User.objects(username='xyzzkljsdlkjsdf').get()
+#     print(user2.count())
+#     for u in user2:
+#         print(u.username)
+# except:
+#     print("Something went wrong!")
+
+# QUERY BOOKING MADE BY A USER
+# kim = User.objects(email='1kimm123@test.com').get()
+# print("Found user:", kim.username)
+# bookings_by_kim = Booking.objects(author=kim)
+# for booking in bookings_by_kim:
+#     print("Booking by:", booking.author.username, booking.description, booking.address, booking.appointment)
+

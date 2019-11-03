@@ -13,3 +13,6 @@ pip3 install dnspython
 
 # MongoEngine
 http://docs.mongoengine.org/guide/defining-documents.html#fields
+
+# MongoEngine Query operators
+http://docs.mongoengine.org/guide/querying.html
