@@ -73,9 +73,9 @@ class Booking(DynamicDocument):
 # booking1.save()
 
 # QUERY DATABASE
-users = User.objects()
-for user in users:
-    print(user.username, user.email)
+# users = User.objects()
+# for user in users:
+#     print(user.username, user.email)
 
 # QUERY FILTER
 # admins = User.objects(admin=True, email_activated=True)
@@ -97,4 +97,34 @@ for user in users:
 # bookings_by_kim = Booking.objects(author=kim)
 # for booking in bookings_by_kim:
 #     print("Booking by:", booking.author.username, booking.description, booking.address, booking.appointment)
+
+# QUERY OPERATORS contains or icontains
+# users_only = User.objects(email__icontains='admin')
+# for user in users_only:
+#     print(user.username)
+
+# QUERY OPERATORS (query a list)
+# bookings = Booking.objects(parts_required='Battery')
+# for booking in bookings:
+#     print(booking.description, booking.parts_required)
+
+# QUERY OPERATORS (query a list with multiple criteria)
+# bookings = Booking.objects(parts_required__all=['Battery', 'Cleaning'])
+# for booking in bookings:
+#     print(booking.description, booking.parts_required)
+
+# QUERY FIRST 2
+# users = User.objects()[:2]
+# for u in users:
+#     print(u.username, u.date_created)
+
+# QUERY ALL BUT FIRST 2
+# users = User.objects()[2:]
+# for u in users:
+#     print(u.username, u.email, u.date_created)
+
+# QUERY (FOR PAGINATION)
+# users = User.objects()[2:4]
+# for u in users:
+#     print(u.username, u.email, u.date_created)
 
