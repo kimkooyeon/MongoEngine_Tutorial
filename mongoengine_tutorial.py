@@ -11,13 +11,15 @@ print(result)
 
 # DEFINING DOCUMENT
 class User(Document):
-    description = StringField(required=True)
+    description = StringField()
     username = StringField(required=True)
     password = StringField(required=True)
     email = EmailField(unique=True, required=True)
     dob = DateField()
     email_activated = BooleanField(default=False)
     date_created = DateTimeField(default=datetime.utcnow)
+    categories = ListField()
+    date_demo = DateField(default=datetime.today)
 
     def json(self):
         user_dict = {
@@ -49,9 +51,10 @@ class Booking(DynamicDocument):
 
 
 # CREATE A USER
-kim = User(username="kim", password='password', email='kim@test.com')
-# kim.save()
+kim = User(username="kim", password='password', email='kimm123@test.com')
+kim.save()
 
 # CREATE A BOOKING
-booking = Booking(description='Water drops', author=User, address='Singapore', appointment=datetime.utcnow())
-# booking.save()
+booking = Booking(description='Water drops', author=kim, address='Singapore', appointment=datetime.utcnow(),
+                  parts_required=['Remote control replacement', 'Battery', 'Cleaning'])
+booking.save()
