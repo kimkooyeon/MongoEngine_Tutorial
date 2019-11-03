@@ -40,6 +40,7 @@ class User(Document):
 class Booking(DynamicDocument):
     author = ReferenceField(User)
     description = StringField()
+    unit = IntField()
     date_created = DateTimeField(default=datetime.utcnow)
     address = StringField(required=True)
     appointment = DateTimeField(required=True)
@@ -51,11 +52,11 @@ class Booking(DynamicDocument):
 
 
 # CREATE A USER
-# kim = User(username="kim", password='password', email='3kimm123@test.com')
+# kim = User(username="kim", password='password', email='1234@test.com')
 # kim.save()
 
 # CREATE A BOOKING
-# booking = Booking(description='Water drops', author=kim, address='Singapore', appointment=datetime.utcnow(),
+# booking = Booking(description='Water drops', author=kim, address='Singapore', unit=4, appointment=datetime.utcnow(),
 #                   parts_required=['Remote control replacement', 'Battery', 'Cleaning'])
 # booking.save()
 
@@ -127,4 +128,24 @@ class Booking(DynamicDocument):
 # users = User.objects()[2:4]
 # for u in users:
 #     print(u.username, u.email, u.date_created)
+
+# COUNT
+# total = User.objects().count()
+# print(total)
+
+# # COUNT WITH CRITERIA
+# total = User.objects(email_activated=False).count()
+# print(total)
+
+# AGGREGATION (e.g. AVERAGE)
+# average = Booking.objects.average('unit')
+# print(average)
+
+# AGGREGATION (e.g. sum)
+# sum = Booking.objects.sum('unit')
+# print(sum)
+
+# RETURN JSON
+# kim = User.objects(username='kim1').get()
+# print(kim.json())
 
